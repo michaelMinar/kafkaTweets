@@ -1,0 +1,11 @@
+--- # security rules
+security_rules:
+{% for port in ports %}
+{% for ip in cidrs %}
+  -
+    proto: tcp
+    from_port: {{ port }}
+    to_port: {{ port }}
+    cidr_ip: {{ ip }}
+{% endfor %}
+{% endfor %}
