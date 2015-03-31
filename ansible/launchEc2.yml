@@ -1,6 +1,6 @@
 # demo_setup.yml
 
-- hosts: localhost
+- hosts: 127.0.0.1 # -- can't use 'localhost' as keyword once rules are in place
   connection: local
   gather_facts: False
   vars:
@@ -18,6 +18,13 @@
     - name: load vars
       include_vars: rules.yml
 
+    - name: Provision a security group
+      ec2_group:
+        region: 'us-west-2'
+        description: 'a security group for kafka tweets'
+        name: 'twelfthNight'
+        rules: "{{ security_rules }}"
+
     - name: Provision a set of instances
       ec2:
         region: 'us-west-2'
@@ -26,9 +33,7 @@
         instance_type: t2.micro
         image: "{{ ami_id }}"
         wait: true
-        spot_price: 0.25
         exact_count: 1
-        rules: "{{ security_rules }}"
         count_tag:
           Name: feste
         instance_tags:
