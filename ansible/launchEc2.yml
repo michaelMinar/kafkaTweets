@@ -4,7 +4,7 @@
   connection: local
   gather_facts: False
   vars:
-    ami_id: ami-e7527ed7
+    ami_id: ami-e7527ed7 # -- standard Amazon linux box
     key_pair: mminarPersonal
     # -- list variables to generate security rules in local action below
     cidrs: [0.0.0.0/0]
@@ -14,7 +14,6 @@
     - name: create rules groups
       local_action:
         module: template src=securityRules.j2 dest=./rules.yml
-
     - name: load vars
       include_vars: rules.yml
 
