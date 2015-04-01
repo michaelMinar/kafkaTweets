@@ -3,8 +3,8 @@
 - hosts: localhost # -- can't use 'localhost' as keyword once rules are in place
   connection: local
   vars:
-    # ami_id: ami-e7527ed7 # -- standard Amazon linux box
-    ami_id: ami-29ebb519 # -- unbuntu server 
+    ami_id: ami-e7527ed7 # -- standard Amazon linux box
+    # ami_id: ami-29ebb519 # -- unbuntu server 
     key_pair: mminarPersonal
     # -- list variables to generate security rules in local action below
     cidrs: [0.0.0.0/0]
