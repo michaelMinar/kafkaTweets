@@ -29,10 +29,11 @@
         region: 'us-west-2'
         key_name: "{{ key_pair }}"
         group: twelfthNight
-        instance_type: c4.xlarge
+        #instance_type: c4.xlarge
+        instance_type: t2.micro
         image: "{{ ami_id }}"
         wait: true
-        spot_price: 0.2
+        #spot_price: 0.2
         exact_count: 1
         count_tag:
           Name: feste

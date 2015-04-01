@@ -5,6 +5,8 @@
   remote_user: ubuntu
 
   tasks:
-    - name: ensure git
-      apt: name=git state=present
-      sudo: yes 
+    # - name: ensure git
+    #   apt: name=git state=present
+    #   sudo: yes 
+
+    
