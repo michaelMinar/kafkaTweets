@@ -1,6 +1,6 @@
 # demo_setup.yml
 
-- hosts: 127.0.0.1 # -- can't use 'localhost' as keyword once rules are in place
+- hosts: localhost # -- can't use 'localhost' as keyword once rules are in place
   connection: local
   gather_facts: False
   vars:
@@ -38,6 +38,5 @@
           Name: feste
         instance_tags:
           Name: feste
-      register: ec2
+      register: feste
 
-      
