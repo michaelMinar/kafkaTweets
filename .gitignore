@@ -26,6 +26,7 @@ dave/scalding_standalone/target/*
 *.png
 *.class
 *.log
+*.list
 
 scala/.history
 scala/.cache/
