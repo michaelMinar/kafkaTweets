@@ -1,0 +1,4 @@
+[feste]
+{% for hh in feste.tagged_instances %}
+{{ hh.public_dns_name }}
+{% endfor %}
