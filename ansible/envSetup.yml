@@ -1,0 +1,10 @@
+--- # get base environment setup
+
+- name: setup nodes for production-style work
+  hosts: feste
+  remote_user: ec2-user
+
+  tasks:
+    - name: ensure git
+      apt: name=git state=present
+      sudo: yes 
