@@ -2,7 +2,7 @@
 
 - name: setup nodes for production-style work
   hosts: feste
-  remote_user: ec2-user
+  remote_user: ubuntu
 
   tasks:
     - name: ensure git
