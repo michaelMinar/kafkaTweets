@@ -5,6 +5,7 @@
   gather_facts: False
   vars:
     ami_id: ami-e7527ed7 # -- standard Amazon linux box
+    # ami_id: ami-9aaa1cf2 # -- 
     key_pair: mminarPersonal
     # -- list variables to generate security rules in local action below
     cidrs: [0.0.0.0/0]
@@ -38,3 +39,5 @@
         instance_tags:
           Name: feste
       register: ec2
+
+      
