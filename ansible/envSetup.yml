@@ -96,3 +96,4 @@
       sudo: yes
     - name: grind through analytics install
       shell: chdir="{{ gitDir }}" ./caliban.sh
+

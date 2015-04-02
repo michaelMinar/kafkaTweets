@@ -1,0 +1,7 @@
+--- # a playbook for installing docker
+
+- name: install docker and load some containers
+	hosts: feste
+	remote_user: ubuntu
+	roles:
+		- angstwad.docker_ubuntu
