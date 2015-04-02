@@ -5,6 +5,21 @@
   remote_user: ec2-user
 
   tasks:
-    # - name: ensure git
-    #   yum: name=git state=present
-    #   sudo: yes 
+    - name: ensure git
+      yum: name=git state=present
+      sudo: yes
+
+    - name: get our repo
+      git: 
+        repo: git@github.com:michaelMinar/kafkaTweets.git
+        dest: /home/ec2-user/git
+        version: master
+        update: yes
+
+    - name: curl
+      yum: name=curl state=present
+      sudo: yes
+
+
+    # - name: bash_profile
+    #   copy: src=
