@@ -6,7 +6,7 @@
 
   tasks:
     - name: ensure git
-      yum: name=git state=present
+      apt: name=git state=present
       sudo: yes
 
     - name: get our repo
@@ -17,7 +17,7 @@
         update: yes
 
     - name: curl
-      yum: name=curl state=present
+      apt: name=curl state=present
       sudo: yes
 
 
