@@ -5,3 +5,7 @@
 	remote_user: ubuntu
 	roles:
 		- angstwad.docker_ubuntu
+	tasks:
+		- name: install the ubuntu docker image
+			shell: docker pull ubuntu
+			sudo: yes
