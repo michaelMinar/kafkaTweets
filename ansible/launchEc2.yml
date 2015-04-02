@@ -3,13 +3,14 @@
 - hosts: localhost # -- can't use 'localhost' as keyword once rules are in place
   connection: local
   vars:
-    ami_id: ami-e7527ed7 # -- standard Amazon linux box
+    # ami_id: ami-e7527ed7 # -- standard Amazon linux box
     # -- note this amazon linux box comes with: python, pip, java
-    # ami_id: ami-29ebb519 # -- unbuntu server 
+    ami_id: ami-29ebb519 # -- unbuntu server 
+    # -- note this ubuntu box comes with: 
     key_pair: mminarPersonal
     # -- list variables to generate security rules in local action below
     cidrs: [0.0.0.0/0]
-    ports: [22, 8080]
+    ports: [22, 8080, 8081]
 
   tasks:
     - name: create rules groups
@@ -24,11 +25,7 @@
         description: 'a security group for kafka tweets'
         name: 'twelfthNight'
         rules: "{{ security_rules }}"
-        rules_egress:
-          - proto: tcp
-            from_port: 80
-            to_port: 80
-            cidr_ip: 0.0.0.0/0
+        rules_egress: "{{ security_rules }}"
 
     - name: Provision a set of instances
       ec2:
