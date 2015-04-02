@@ -11,9 +11,9 @@
 
     - name: get our repo
       git: 
-        repo: git@github.com:michaelMinar/kafkaTweets.git
-        dest: /home/ec2-user/git
-        version: master
+        repo: https://github.com/michaelMinar/kafkaTweets.git
+        dest: /home/ubuntu/git
+        # version: master
         update: yes
 
     - name: curl
