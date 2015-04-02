@@ -95,5 +95,4 @@
       shell: sudo apt-get -y build-dep python-matplotlib
       sudo: yes
     - name: grind through analytics install
-      sudo: yes
-      shell: chdir="{{ gitDir }}" bash ./caliban.sh
+      shell: chdir="{{ gitDir }}" ./caliban.sh
