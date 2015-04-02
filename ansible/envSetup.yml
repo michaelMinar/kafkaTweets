@@ -3,6 +3,8 @@
 - name: setup nodes for production-style work
   hosts: feste
   remote_user: ubuntu
+  vars:
+    gitDir: /home/ubuntu/git/kafkaTweets/
 
   tasks:
     - name: ensure git
@@ -12,14 +14,86 @@
     - name: get our repo
       git: 
         repo: https://github.com/michaelMinar/kafkaTweets.git
-        dest: /home/ubuntu/git
+        dest: "{{ gitDir }}"
         # version: master
         update: yes
 
+    - name: add pyenv
+      git: 
+        repo: https://github.com/yyuu/pyenv.git
+        dest: ~/.pyenv
+    - name: add virtualenv
+      git: 
+        repo: https://github.com/yyuu/pyenv-virtualenv.git 
+        dest: ~/.pyenv/plugins/pyenv-virtualenv
+    - name: add bash_profile
+      copy: src=bProf dest=/home/ubuntu/.bash_profile
+    - name: add bash_profile
+      copy: src=bProf dest=/home/ubuntu/.bashrc
+
+    # -- some essential packages for building things on debian envrionments
+    - name: update the apt cache - find packages in valid places
+      apt: update_cache=yes
+      sudo: yes
+    - name: essential build tools
+      apt: name=build-essential state=present
+      sudo: yes
+    - name: libssl-dev 
+      apt: name=libssl-dev state=present
+      sudo: yes
+    - name: zlib1g-dev 
+      apt: name=zlib1g-dev state=present
+      sudo: yes
+    - name: libreadline-dev 
+      apt: name=libreadline-dev state=present
+      sudo: yes
+    - name: libsqlite3-dev
+      apt: name=libsqlite3-dev state=present
+      sudo: yes
+    - name: wget
+      apt: name=wget state=present
+      sudo: yes
     - name: curl
       apt: name=curl state=present
       sudo: yes
+    - name: llvm
+      apt: name=llvm state=present
+      sudo: yes
+    - name: add some tools
+      apt: name=gcc state=present
+      sudo: yes
+    - name: add make
+      apt: name=make state=present
+      sudo: yes
+    - name: add mysql
+      apt: name=mysql-client state=present
+      sudo: yes
+    - name: add mysql-dev
+      apt: name=libmysqlclient-dev state=present
+      sudo: yes
+    - name: add libpq
+      apt: name=libpq-dev state=present
+      sudo: yes
+    - name: add libblas3
+      apt: name=libblas3 state=present
+      sudo: yes
+    - name: add atlas
+      apt: name=libatlas-dev state=present
+      sudo: yes
+    - name: add lapack
+      apt: name=liblapack-dev state=present
+      sudo: yes
+    - name: add gfortran
+      apt: name=gfortran state=present
+      sudo: yes
+    - name: add curses
+      apt: name=libncurses-dev state=present
+      sudo: yes
 
-
-    # - name: bash_profile
-    #   copy: src=
+    # -- python specific libraries and setting up environment
+    - name: build-dep
+      shell: sudo apt-get -y build-dep python-matplotlib
+      sudo: yes
+    - name: grind through analytics install
+      sudo: yes
+      shell: chdir="{{ gitDir }}" bash ./caliban.sh
