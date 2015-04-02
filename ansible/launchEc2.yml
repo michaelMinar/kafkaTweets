@@ -10,7 +10,7 @@
     key_pair: mminarPersonal
     # -- list variables to generate security rules in local action below
     cidrs: [0.0.0.0/0]
-    ports: [22, 8080, 8081]
+    ports: [22, 80, 8080, 8081]
 
   tasks:
     - name: create rules groups
